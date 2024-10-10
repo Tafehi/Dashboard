@@ -26,10 +26,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Print environment variables
         run: |
-          echo "ENV_NAME"=${{ env.ENV_NAME }}
-          echo "DB_URL"=${{ env.DB_URL }}
-          echo "DB_USERNAME"=${{ env.DB_USERNAME }}
-          echo "DB_PASSWORD"=${{ env.DB_PASSWORD }}
+          echo "ENV_NAME=${{ secrets.ENV_NAME }}"
+          echo "DB_URL=${{ secrets.DB_URL }}"
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}"
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"
+      - name: Print all environment variables
+        run: printenv
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
