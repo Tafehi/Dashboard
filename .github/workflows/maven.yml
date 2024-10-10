@@ -18,7 +18,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      spring.application.name: ${{ vars.envName }}
+      spring.datasource.url: ${{ secrets.url }}
+      spring.datasource.username: ${{ secrets.username }}
+      spring.datasource.password: ${{ secrets.password }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
@@ -28,11 +32,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        env:
-          spring.application.name: ${{ vars.envName }}
-          spring.datasource.url: ${{ secrets.url }}
-          spring.datasource.username: ${{ secrets.username }}
-          spring.datasource.password : ${{ secrets.password }}
         run: mvn -B package --file pom.xml
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
