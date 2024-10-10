@@ -19,10 +19,10 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      spring.application.name: ${{ vars.ENVNAME }}
-      spring.datasource.url: ${{ secrets.URL }}
-      spring.datasource.username: ${{ secrets.USERNAME }}
-      spring.datasource.password: ${{ secrets.PASSWORD }}
+      spring.application.name: ${{ vars.ENV_NAME }}
+      spring.datasource.url: ${{ secrets.DB_URL }}
+      spring.datasource.username: ${{ secrets.DB_USERNAME }}
+      spring.datasource.password: ${{ secrets.DB_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
